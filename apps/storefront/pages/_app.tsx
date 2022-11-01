@@ -14,6 +14,15 @@ import { DEMO_MODE } from "@/lib/const";
 import apolloClient from "@/lib/graphql";
 import { CheckoutProvider } from "@/lib/providers/CheckoutProvider";
 
+if (
+  typeof window !== "undefined" &&
+  process.env.NODE_ENV === "development"
+  // && /VIVID_ENABLED=true/.test(document.cookie)
+) {
+  void import("vivid-studio").then((v) => v.run());
+  import("vivid-studio/style.css");
+}
+
 type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode;
 };
